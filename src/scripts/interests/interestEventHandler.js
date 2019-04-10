@@ -13,10 +13,11 @@ export default {
             name: nameInput.value,
             description: descriptionInput.value,
             cost: parseFloat(costInput.value).toFixed(2),
-            place: parseInt(placeInput.value),
+            placeId: parseInt(placeInput.value),
             review: ""
         }
 
-        // apiManager.postInterest(newInterest)
+
+        apiManager.postInterest(newInterest).then(interests.listAllInterests)
     }
 }
