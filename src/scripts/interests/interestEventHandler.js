@@ -1,4 +1,7 @@
 
 export default {
-    showForm
+    postInterest(){
+        event.preventDefault()
+        const nameInput = document.getElementById("name-input")
+    }
 }

@@ -9,8 +9,8 @@ export default {
         return fetch(`${apiUrl}/interests?_expand=place`)
         .then(response => response.json())
     },
-    post(resource, newObj) {
-        return fetch(`${apiUrl}/${resource}`, {
+    postInterest(newObj) {
+        return fetch(`${apiUrl}/interests`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -18,17 +18,17 @@ export default {
             body: JSON.stringify(newObj)
         }).then(response => response.json())
     },
-    put(resource, id, newObj) {
-        return fetch(`${apiUrl}/${resource}/${id}`, {
-            method: "PUT",
+    patchInterest(id, newObj) {
+        return fetch(`${apiUrl}/interests/${id}`, {
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(newObj)
         }).then(response => response.json())
     },
-    delete(resource, id) {
-        return fetch(`${apiUrl}/${resource}/${id}`, {
+    deleteInterest(id) {
+        return fetch(`${apiUrl}/interests/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
