@@ -1,13 +1,13 @@
 const apiUrl = "http://localhost:8088"
 
 export default {
-    getAll(resource) {
-        return fetch(`${apiUrl}/${resource}`)
+    getAllPlaces() {
+        return fetch(`${apiUrl}/places?_embed=interests`)
             .then(response => response.json())
     },
-    getOne(resource, id) {
-        return fetch(`${apiUrl}/${resource}/${id}`)
-            .then(response => response.json())
+    getAllInterests() {
+        return fetch(`${apiUrl}/interests?_expand=place`)
+        .then(response => response.json())
     },
     post(resource, newObj) {
         return fetch(`${apiUrl}/${resource}`, {
