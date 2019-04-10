@@ -2,6 +2,10 @@ import apiManager from "../apiManager"
 import interestDom from "./interestDom"
 
 export default {
+    initialElements(){
+        const domEl = document.getElementById("display-container")
+        domEl.appendChild(interestDom.createBaseElements())
+    },
     listAllInterests() {
         const domEl = document.getElementById("interest-display")
 

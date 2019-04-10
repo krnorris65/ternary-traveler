@@ -1,12 +1,14 @@
 import domManager from "../domManager"
+import apiManager from "../apiManager";
 
 export default {
-    initialElements(){
-        const domEl = document.getElementById("display-container")
-        domEl.appendChild(domManager.buildHtml("h1", undefined, "Interests"))
-        domEl.appendChild(domManager.buildHtml("button", "new-interest-button", "New Interest"))
-        domEl.appendChild(domManager.buildHtml("section", "interest-form"))
-        domEl.appendChild(domManager.buildHtml("section", "interest-display"))
+    createBaseElements(){
+        const domFrag = document.createDocumentFragment()
+        domFrag.appendChild(domManager.buildHtml("h1", undefined, "Interests"))
+        const formSection = domFrag.appendChild(domManager.buildHtml("section", "interest-form"))
+        formSection.appendChild(this.createForm())
+        domFrag.appendChild(domManager.buildHtml("section", "interest-display"))
+        return domFrag
     },
     createIntSection(interest){
         //section
@@ -25,5 +27,41 @@ export default {
         }
 
         return interestSection
+    },
+    createForm(){
+        const formEl = document.createElement("form")
+
+        //name label & input
+        const nameFieldset = formEl.appendChild(document.createElement("fieldset"))
+        nameFieldset.appendChild(domManager.buildHtml("label", undefined, "Name: "))
+        nameFieldset.appendChild(domManager.buildHtml("input", "name-input"))
+
+        //description label & textarea
+        const descriptionFieldset = formEl.appendChild(document.createElement("fieldset"))
+        descriptionFieldset.appendChild(domManager.buildHtml("label", undefined, "Description: "))
+        descriptionFieldset.appendChild(domManager.buildHtml("textarea", "description-input"))
+
+        //cost label & input
+        const costFieldset = formEl.appendChild(document.createElement("fieldset"))
+        costFieldset.appendChild(domManager.buildHtml("label", undefined, "Cost: "))
+        costFieldset.appendChild(domManager.buildHtml("input", "cost-input"))
+
+        //place label & select
+        const placeFieldset = formEl.appendChild(document.createElement("fieldset"))
+        placeFieldset.appendChild(domManager.buildHtml("label", undefined, "Place: "))
+        const placeSelect = placeFieldset.appendChild(domManager.buildHtml("select", "place-input"))
+
+        placeSelect.appendChild(domManager.buildOption("Select Location", ""))
+        //get request to get places for select options
+        apiManager.getAllPlaces().then(placesArray => {
+            placesArray.forEach(place => {
+                placeSelect.appendChild(domManager.buildOption(`${place.name}`, `${place.id}`))
+            })
+        })
+
+        formEl.appendChild(domManager.buildHtml("button", "post-interest", "Save Interest"))
+
+        return formEl
+
     }
 }
