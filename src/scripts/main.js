@@ -1,2 +1,3 @@
-import apiManager from "./apiManager"
+import interests from "./interests/interests"
 
+interests.listAllInterests()
