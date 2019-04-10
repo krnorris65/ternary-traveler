@@ -1,5 +1,6 @@
 import domManager from "../domManager"
 import apiManager from "../apiManager";
+import eventHandler from "./interestEventHandler"
 
 export default {
     createBaseElements(){
@@ -59,7 +60,9 @@ export default {
             })
         })
 
-        formEl.appendChild(domManager.buildHtml("button", "post-interest", "Save Interest"))
+        const formButton = formEl.appendChild(domManager.buildHtml("button", "post-interest", "Save Interest"))
+
+        formButton.addEventListener("click", eventHandler.postInterest)
 
         return formEl
 

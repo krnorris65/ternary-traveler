@@ -1,5 +1,6 @@
 import apiManager from "../apiManager"
 import interestDom from "./interestDom"
+// import domManager from "../domManager"
 
 export default {
     initialElements(){
@@ -8,6 +9,7 @@ export default {
     },
     listAllInterests() {
         const domEl = document.getElementById("interest-display")
+        // domManager.clearElement(domEl)
 
         apiManager.getAllInterests().then(interestArray => {
             const domFrag = document.createDocumentFragment()
