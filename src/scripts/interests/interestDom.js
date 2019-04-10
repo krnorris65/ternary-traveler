@@ -1,6 +1,13 @@
 import domManager from "../domManager"
 
 export default {
+    initialElements(){
+        const domEl = document.getElementById("display-container")
+        domEl.appendChild(domManager.buildHtml("h1", undefined, "Interests"))
+        domEl.appendChild(domManager.buildHtml("button", "new-interest-button", "New Interest"))
+        domEl.appendChild(domManager.buildHtml("section", "interest-form"))
+        domEl.appendChild(domManager.buildHtml("section", "interest-display"))
+    },
     createIntSection(interest){
         //section
         const interestSection = domManager.buildHtml("section", `interest--${interest.id}`)

@@ -3,7 +3,7 @@ import interestDom from "./interestDom"
 
 export default {
     listAllInterests() {
-        const domEl = document.getElementById("display-container")
+        const domEl = document.getElementById("interest-display")
 
         apiManager.getAllInterests().then(interestArray => {
             const domFrag = document.createDocumentFragment()
