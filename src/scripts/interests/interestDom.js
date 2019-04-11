@@ -45,7 +45,9 @@ export default {
         //cost label & input
         const costFieldset = formEl.appendChild(document.createElement("fieldset"))
         costFieldset.appendChild(domManager.buildHtml("label", undefined, "Cost: "))
-        costFieldset.appendChild(domManager.buildHtml("input", "cost-input"))
+        const costInput = costFieldset.appendChild(domManager.buildHtml("input", "cost-input"))
+        costInput.type = "number"
+        costInput.min = "0"
 
         //place label & select
         const placeFieldset = formEl.appendChild(document.createElement("fieldset"))

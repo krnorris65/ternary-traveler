@@ -9,15 +9,21 @@ export default {
         const costInput = document.getElementById("cost-input")
         const placeInput = document.getElementById("place-input")
 
-        const newInterest = {
-            name: nameInput.value,
-            description: descriptionInput.value,
-            cost: parseFloat(costInput.value).toFixed(2),
-            placeId: parseInt(placeInput.value),
-            review: ""
+        if(placeInput.value === ""){
+            alert("Please select a location")
+        } else {
+
+            const newInterest = {
+                name: nameInput.value,
+                description: descriptionInput.value,
+                cost: parseFloat(costInput.value).toFixed(2),
+                placeId: parseInt(placeInput.value),
+                review: ""
+            }
+
+            apiManager.postInterest(newInterest).then(interests.listAllInterests)
         }
 
 
-        apiManager.postInterest(newInterest).then(interests.listAllInterests)
     }
 }
