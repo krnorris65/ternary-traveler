@@ -10,6 +10,13 @@ export default {
         }
         return htmlElement;
     },
+    buildOption(elementText, elementValue){
+        const optionEl = document.createElement("option")
+        optionEl.textContent = elementText
+        optionEl.value = elementValue
+
+        return optionEl
+    },
     clearElement(el) {
         while(el.firstChild){
             el.removeChild(el.firstChild)
